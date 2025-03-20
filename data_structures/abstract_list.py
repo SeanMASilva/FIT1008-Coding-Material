@@ -30,7 +30,7 @@ class List(ABC, Generic[T]):
         for i in range(len(self)):
             if i > 0:
                 result += ', '
-            result += str(self[i]) if type(self[i]) != str else "'{0}'".format(self[i])
+            result += str(self[i]) if type(self[i]) != str else f"'{self[i]}'"
         result += ']'
         return result
 

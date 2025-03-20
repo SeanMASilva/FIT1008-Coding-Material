@@ -67,6 +67,15 @@ class ArraySet(Set[T]):
                 break
         else:
             raise KeyError(item)
+    
+    def values(self) -> ArrayR[T]:
+        """
+        Returns the elements of the set as an array.
+        """
+        res = ArrayR(self.__length)
+        for i in range(self.__length):
+            res[i] = self.__array[i]
+        return res
 
     def union(self, other: ArraySet[T]) -> ArraySet[T]:
         """

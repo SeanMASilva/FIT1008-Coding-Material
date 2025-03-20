@@ -41,6 +41,16 @@ class TestArraySet(TestCase):
         self.assertFalse(1 in self.set)
         self.assertFalse(2 in self.set)
         self.assertFalse(3 in self.set)
+
+    def test_values(self):
+        for i in range(1, 11):
+            self.set.add(i)
+        
+        values = self.set.values()
+        self.assertEqual(len(values), 10)
+        
+        for i in range(1, 11):
+            self.assertTrue(i in values)
     
     def test_clear(self):
         for i in range(10):
