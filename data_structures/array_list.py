@@ -30,8 +30,10 @@ class ArrayList(List[T]):
         :raises IndexError: if index is out of bounds
         :complexity: O(1)
         """
-        if index < 0 or len(self) <= index:
+        if index < -1 * len(self) or len(self) <= index:
             raise IndexError("Out of bounds access in list.")
+        if index < 0:
+            index = len(self) + index
         return self.__array[index]
 
     def __setitem__(self, index: int, value: T) -> None:
@@ -39,8 +41,10 @@ class ArrayList(List[T]):
         :raises IndexError: if index is out of bounds
         :complexity: O(1)
         """
-        if index < 0 or len(self) <= index:
+        if index < -1 * len(self) or len(self) <= index:
             raise IndexError("Out of bounds access in list.")
+        if index < 0:
+            index = len(self) + index
         self.__array[index] = value
 
     def __shuffle_right(self, index: int) -> None:

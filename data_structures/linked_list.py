@@ -66,7 +66,9 @@ class LinkedList(List[T]):
         self.__length += 1
 
     def __get_node_at_index(self, index: int) -> Node[T]:
-        if 0 <= index and index <= len(self):
+        if -1 * len(self) <= index and index <= len(self):
+            if index < 0:
+                index = len(self) + index
             current = self.__head
             for i in range(index):
                 current = current.link
