@@ -79,6 +79,20 @@ class TestArrayList(TestCase):
             self.list.remove(i)
             self.assertEqual(len(self.list), 9 - i)
 
+    def test_getitem(self):
+        self.assertRaises(IndexError, lambda: self.list[0])
+        self.assertRaises(IndexError, lambda: self.list[-1])
+
+        self.list.append(0)
+        self.list.append(1)
+        self.assertEqual(self.list[0], 0)
+        self.assertEqual(self.list[1], 1)
+        self.assertEqual(self.list[-1], 1)
+        self.assertEqual(self.list[-2], 0)
+
+        self.assertRaises(IndexError, lambda: self.list[2])
+        self.assertRaises(IndexError, lambda: self.list[-3])
+
 
 class TestLinkedList(TestCase):
     def setUp(self):
@@ -154,3 +168,18 @@ class TestLinkedList(TestCase):
         for i in range(10):
             self.list.remove(i)
             self.assertEqual(len(self.list), 9 - i)
+
+    def test_getitem(self):
+        self.assertRaises(IndexError, lambda: self.list[0])
+        self.assertRaises(IndexError, lambda: self.list[-1])
+
+        self.list.append(0)
+        self.list.append(1)
+        self.assertEqual(self.list[0], 0)
+        self.assertEqual(self.list[1], 1)
+        self.assertEqual(self.list[-1], 1)
+        self.assertEqual(self.list[-2], 0)
+
+        self.assertRaises(IndexError, lambda: self.list[2])
+        self.assertRaises(IndexError, lambda: self.list[-3])
+
