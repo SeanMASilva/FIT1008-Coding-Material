@@ -1,11 +1,12 @@
+from data_structures.abstract_dictionary import Dictionary
 from data_structures.referential_array import ArrayR
 from data_structures.linked_list import LinkedList
-from typing import TypeVar, Generic
+from typing import TypeVar
 
-T = TypeVar('T')
+K = TypeVar('K')
+V = TypeVar('V')
 
-
-class HashTableSeparateChaining(Generic[T]):
+class HashTableSeparateChaining(Dictionary[K, V]):
     """
     Separate Chaining Hash Table Implementation using a Linked List.
     It currently rehashes the primary cluster to handle deletion.
@@ -38,7 +39,7 @@ class HashTableSeparateChaining(Generic[T]):
         """
         return self.__length
 
-    def __delitem__(self, key: str) -> None:
+    def __delitem__(self, key: K) -> None:
         """
         Deletes an item from our hash table
         :raises KeyError: when the key doesn't exist
@@ -59,7 +60,7 @@ class HashTableSeparateChaining(Generic[T]):
 
         raise KeyError(key)
 
-    def __setitem__(self, key: str, data: T) -> None:
+    def __setitem__(self, key: K, data: V) -> None:
         """
         Set a (key, data) pair in our hash table
         """
@@ -79,7 +80,7 @@ class HashTableSeparateChaining(Generic[T]):
         self.__table[position].insert(0, (key, data))
         self.__length += 1
 
-    def __contains__(self, key: str) -> bool:
+    def __contains__(self, key: K) -> bool:
         """
         Checks to see if the given key is in the Hash Table
         """
@@ -90,7 +91,7 @@ class HashTableSeparateChaining(Generic[T]):
         else:
             return True
 
-    def __getitem__(self, key: str) -> T:
+    def __getitem__(self, key: K) -> V:
         """
         Get the data associated with a key
         :raises KeyError: when the key doesn't exist
@@ -111,7 +112,7 @@ class HashTableSeparateChaining(Generic[T]):
         """
         return self.__length == 0
 
-    def hash(self, key: str) -> int:
+    def hash(self, key: K) -> int:
         """
         Universal Hash function
         :returns: a valid position (0 <= value < table_size) in the hash table
@@ -124,7 +125,7 @@ class HashTableSeparateChaining(Generic[T]):
             a = a * HashTableSeparateChaining.DEFAULT_HASH_BASE % (len(self.__table) - 1)
         return value
 
-    def insert(self, key: str, data: T) -> None:
+    def insert(self, key: K, data: V) -> None:
         """
         Utility method to call our setitem method
         """
@@ -140,7 +141,7 @@ class HashTableSeparateChaining(Generic[T]):
                 for item in list:
                     yield item[1]
 
-    def keys(self) -> ArrayR[str]:
+    def keys(self) -> ArrayR[K]:
         """
         Returns all keys in the hash table
         :complexity: O(N) where N is the number of items in our hash table
@@ -154,7 +155,7 @@ class HashTableSeparateChaining(Generic[T]):
                     i += 1
         return res
 
-    def values(self) -> ArrayR[T]:
+    def values(self) -> ArrayR[V]:
         """
         Returns all values in the hash table
         :complexity: O(N) where N is the number of items in our hash table
