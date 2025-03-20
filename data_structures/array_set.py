@@ -13,12 +13,12 @@ class ArraySet(Set[T]):
             raise ValueError("Capacity should be larger than 0.")
 
         Set.__init__(self)
-        self.__size = 0
+        self.__length = 0
         self.__array = ArrayR(capacity)
 
     def __len__(self) -> int:
         """ Returns the number of elements in the set. """
-        return self.__size
+        return self.__length
 
     def is_empty(self) -> bool:
         """ True if the set is empty. """
@@ -26,7 +26,7 @@ class ArraySet(Set[T]):
 
     def __contains__(self, item: T) -> bool:
         """ True if the set contains the item. """
-        for i in range(self.__size):
+        for i in range(self.__length):
             if item == self.__array[i]:
                 return True
         return False
@@ -36,7 +36,7 @@ class ArraySet(Set[T]):
         We do this by simply setting the size to 0, which means the next items will
         write over the existing array.
         """
-        self.__size = 0
+        self.__length = 0
 
     def is_full(self) -> bool:
         """ True if the set is full and no element can be added. """
@@ -52,18 +52,18 @@ class ArraySet(Set[T]):
             if self.is_full():
                 raise Exception("The set is full.")
 
-            self.__array[self.__size] = item
-            self.__size += 1
+            self.__array[self.__length] = item
+            self.__length += 1
 
     def remove(self, item: T) -> None:
         """
         Removes an element from the set.
         :raises KeyError: if no such element is found.
         """
-        for i in range(self.__size):
+        for i in range(self.__length):
             if item == self.__array[i]:
-                self.__array[i] = self.__array[self.__size - 1]
-                self.__size -= 1
+                self.__array[i] = self.__array[self.__length - 1]
+                self.__length -= 1
                 break
         else:
             raise KeyError(item)
@@ -77,12 +77,12 @@ class ArraySet(Set[T]):
 
         for i in range(len(self)):
             res.__array[i] = self.__array[i]
-        res.__size = self.__size
+        res.__length = self.__length
 
         for j in range(len(other)):
             if other.__array[j] not in self:
-                res.__array[res.__size] = other.__array[j]
-                res.__size += 1
+                res.__array[res.__length] = other.__array[j]
+                res.__length += 1
 
         return res
 
@@ -95,8 +95,8 @@ class ArraySet(Set[T]):
 
         for i in range(len(self)):
             if self.__array[i] in other:
-                res.__array[res.__size] = self.__array[i]
-                res.__size += 1
+                res.__array[res.__length] = self.__array[i]
+                res.__length += 1
 
         return res
 
@@ -109,8 +109,8 @@ class ArraySet(Set[T]):
 
         for i in range(len(self)):
             if self.__array[i] not in other:
-                res.__array[res.__size] = self.__array[i]
-                res.__size += 1
+                res.__array[res.__length] = self.__array[i]
+                res.__length += 1
 
         return res
 
