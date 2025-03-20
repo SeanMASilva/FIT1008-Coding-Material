@@ -7,9 +7,9 @@ K = TypeVar('K')
 V = TypeVar('V')
 
 
-class Dictionary(ABC, Generic[K, V]):
+class HashTable(ABC, Generic[K, V]):
     """
-    Dictionary (Map) ADT. 
+    Hash Table (Map/Dictionary) ADT. 
     Defines a generic abstract list with the standard methods.
     """
 
