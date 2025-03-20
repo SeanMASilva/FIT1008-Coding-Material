@@ -35,8 +35,10 @@ class ArraySortedList(SortedList[T]):
         """ Return the element at the given position.
         :raises IndexError: if the index is out of bounds.
         """
-        if index < 0 or len(self) <= index:
+        if index < -1 * len(self) or len(self) <= index:
             raise IndexError('Out of bounds access in list.')
+        if index < 0:
+            index = len(self) + index
         return self.__array[index]
 
     def __contains__(self, item):

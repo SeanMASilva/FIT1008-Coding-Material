@@ -66,13 +66,15 @@ class LinkedList(List[T]):
         self.__length += 1
 
     def __get_node_at_index(self, index: int) -> Node[T]:
-        if 0 <= index and index <= len(self):
+        if -1 * len(self) <= index and index < len(self):
+            if index < 0:
+                index = len(self) + index
             current = self.__head
             for i in range(index):
                 current = current.link
             return current
         else:
-            raise ValueError('Index out of bounds')
+            raise IndexError('Out of bounds access in list.')
 
     def index(self, item: T) -> int:
         """ Find the position of a given item in the list. """
