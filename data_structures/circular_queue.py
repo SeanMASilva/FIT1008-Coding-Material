@@ -10,22 +10,20 @@ class CircularQueue(Queue[T]):
          front (int): index of the element at the front of the queue
          rear (int): index of the first empty space at the back of the queue
          array (ArrayR[T]): array storing the elements of the queue
-
-    ArrayR cannot create empty arrays. So MIN_CAPACITY used to avoid this.
     """
-    MIN_CAPACITY = 1
 
     def __init__(self, max_capacity: int) -> None:
+        if max_capacity <= 0:
+            raise ValueError("Capacity should be larger than 0.")
+
         Queue.__init__(self)
         self.__front = 0
         self.__rear = 0
         self.__length = 0
-        self.__array = ArrayR(max(self.MIN_CAPACITY,max_capacity))
-
+        self.__array = ArrayR(max_capacity)
 
     def append(self, item: T) -> None:
         """ Adds an element to the rear of the queue.
-        :pre: queue is not full
         :raises Exception: if the queue is full
         """
         if self.is_full():
@@ -37,7 +35,6 @@ class CircularQueue(Queue[T]):
 
     def serve(self) -> T:
         """ Deletes and returns the element at the queue's front.
-        :pre: queue is not empty
         :raises Exception: if the queue is empty
         """
         if self.is_empty():
@@ -50,7 +47,6 @@ class CircularQueue(Queue[T]):
 
     def peek(self) -> T:
         """ Returns the element at the queue's front.
-        :pre: queue is not empty
         :raises Exception: if the queue is empty
         """
         if self.is_empty():
