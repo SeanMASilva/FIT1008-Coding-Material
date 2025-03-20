@@ -57,7 +57,13 @@ class LinkedList(List[T]):
         """ Append the item to the end of the list. 
         Given we have a reference to the rear of the list, this is O(1).
         """
-        self.insert(len(self), item)
+        new_node = Node(item)
+        if self.__head is None:
+            self.__head = new_node
+        else:
+            self.__rear.link = new_node
+        self.__rear = new_node
+        self.__length += 1
 
     def __get_node_at_index(self, index: int) -> Node[T]:
         if 0 <= index and index <= len(self):
