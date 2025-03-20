@@ -74,7 +74,7 @@ class LinkedList(List[T]):
                 current = current.link
             return current
         else:
-            raise ValueError('Index out of bounds')
+            raise IndexError('Out of bounds access in list.')
 
     def index(self, item: T) -> int:
         """ Find the position of a given item in the list. """
