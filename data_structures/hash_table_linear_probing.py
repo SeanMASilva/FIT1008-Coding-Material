@@ -1,12 +1,13 @@
 from __future__ import annotations
-from typing import TypeVar, Generic
+from typing import TypeVar
+from data_structures.abstract_dictionary import Dictionary
 from data_structures.referential_array import ArrayR
 
 K = TypeVar('K')
 V = TypeVar('V')
 
 
-class LinearProbeTable(Generic[K, V]):
+class LinearProbeTable(Dictionary[K, V]):
     """
     Linear Probe Table.
     Defines a Hash Table using Linear Probing for conflict resolution.
