@@ -7,17 +7,13 @@ class ArrayStack(Stack[T]):
     Attributes:
          length (int): number of elements in the stack (inherited)
          array (ArrayR[T]): array storing the elements of the queue
-
-    ArrayR cannot create empty arrays. So MIN_CAPACITY used to avoid this.
     """
-    MIN_CAPACITY = 1
 
     def __init__(self, max_capacity: int) -> None:
-        """ Initialises the length and the array with the given capacity.
-            If max_capacity is 0, the array is created with MIN_CAPACITY.
-        """
+        if max_capacity <= 0:
+            raise ValueError("Capacity should be larger than 0.")
         Stack.__init__(self)
-        self.__array = ArrayR(max(self.MIN_CAPACITY, max_capacity))
+        self.__array = ArrayR(max_capacity)
         self.__length = 0
 
     def is_full(self) -> bool:
@@ -26,7 +22,6 @@ class ArrayStack(Stack[T]):
 
     def push(self, item: T) -> None:
         """ Pushes an element to the top of the stack.
-        :pre: stack is not full
         :raises Exception: if the stack is full
         """
         if self.is_full():
@@ -36,7 +31,6 @@ class ArrayStack(Stack[T]):
 
     def pop(self) -> T:
         """ Pops the element at the top of the stack.
-        :pre: stack is not empty
         :raises Exception: if the stack is empty
         """
         if self.is_empty():
@@ -46,7 +40,6 @@ class ArrayStack(Stack[T]):
 
     def peek(self) -> T:
         """ Returns the element at the top, without popping it from stack.
-        :pre: stack is not empty
         :raises Exception: if the stack is empty
         """
         if self.is_empty():

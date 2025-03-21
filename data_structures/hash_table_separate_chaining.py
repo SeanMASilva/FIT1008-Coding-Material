@@ -1,11 +1,11 @@
+from data_structures.abstract_hash_table import HashTable
 from data_structures.referential_array import ArrayR
 from data_structures.linked_list import LinkedList
-from typing import TypeVar, Generic
+from typing import TypeVar
 
-T = TypeVar('T')
+V = TypeVar('V')
 
-
-class HashTableSeparateChaining(Generic[T]):
+class HashTableSeparateChaining(HashTable[str, V]):
     """
     Separate Chaining Hash Table Implementation using a Linked List.
     It currently rehashes the primary cluster to handle deletion.
@@ -15,7 +15,7 @@ class HashTableSeparateChaining(Generic[T]):
         DEFAULT_HASH_TABLE: default hash base used for the hash function
 
     attributes:
-        count: number of elements in the hash table
+        length: number of elements in the hash table
         array: used to represent our internal array
     """
 
@@ -59,7 +59,7 @@ class HashTableSeparateChaining(Generic[T]):
 
         raise KeyError(key)
 
-    def __setitem__(self, key: str, data: T) -> None:
+    def __setitem__(self, key: str, data: V) -> None:
         """
         Set a (key, data) pair in our hash table
         """
@@ -90,7 +90,7 @@ class HashTableSeparateChaining(Generic[T]):
         else:
             return True
 
-    def __getitem__(self, key: str) -> T:
+    def __getitem__(self, key: str) -> V:
         """
         Get the data associated with a key
         :raises KeyError: when the key doesn't exist
@@ -124,7 +124,7 @@ class HashTableSeparateChaining(Generic[T]):
             a = a * HashTableSeparateChaining.DEFAULT_HASH_BASE % (len(self.__table) - 1)
         return value
 
-    def insert(self, key: str, data: T) -> None:
+    def insert(self, key: str, data: V) -> None:
         """
         Utility method to call our setitem method
         """
@@ -154,7 +154,7 @@ class HashTableSeparateChaining(Generic[T]):
                     i += 1
         return res
 
-    def values(self) -> ArrayR[T]:
+    def values(self) -> ArrayR[V]:
         """
         Returns all values in the hash table
         :complexity: O(N) where N is the number of items in our hash table
