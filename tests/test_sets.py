@@ -118,6 +118,18 @@ class TestArraySet(TestCase):
         
         for i in range(5, 15):
             self.assertFalse(i in difference)
+    
+    def test_values(self):
+        self.set.add('hi')
+        self.set.add('hello')
+        self.set.add('goodbye')
+        
+        value_array = self.set.values()
+        self.assertIn('hi', value_array)
+        self.assertIn('hello', value_array)
+        self.assertIn('goodbye', value_array)
+
+
 
 
 class TestBitVectorSet(TestCase):
@@ -230,3 +242,12 @@ class TestBitVectorSet(TestCase):
         self.assertRaises(TypeError, self.set.add, -1)
         self.assertRaises(TypeError, self.set.add, 0.5)
     
+    def test_values(self):
+        self.set.add(4)
+        self.set.add(15)
+        self.set.add(23)
+        
+        value_array = self.set.values()
+        self.assertIn(4, value_array)
+        self.assertIn(15, value_array)
+        self.assertIn(23, value_array)

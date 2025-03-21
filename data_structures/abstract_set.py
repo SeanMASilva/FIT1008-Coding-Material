@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from typing import TypeVar, Generic
+from data_structures.referential_array import ArrayR
 
 T = TypeVar('T')
 
@@ -48,6 +49,13 @@ class Set(ABC, Generic[T]):
         pass
 
     @abstractmethod
+    def values(self) -> ArrayR[T]:
+        """
+        Returns an array of all the items in the set in no particular order.
+        """
+        pass
+
+    @abstractmethod
     def union(self, other: Set[T]) -> Set[T]:
         """ Makes a union of the set with another set. """
         pass
@@ -61,3 +69,16 @@ class Set(ABC, Generic[T]):
     def difference(self, other: Set[T]) -> Set[T]:
         """ Creates a difference of the set with another set. """
         pass
+
+    def __and__(self, other: Set[T]) -> Set[T]:
+        """ Magic method alias for intersection """
+        return self.intersection(other)
+    
+    def __or__(self, other: Set[T]) -> Set[T]:
+        """ Magic method alias for union """
+        return self.union(other)
+    
+    def __sub__(self, other: Set[T]) -> Set[T]:
+        """ Magic method alias for difference """
+        return self.difference(other)
+    

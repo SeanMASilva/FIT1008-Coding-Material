@@ -127,5 +127,5 @@ class ArraySet(Set[T]):
         """ Magic method constructing a string representation of the list object. """
         elems = []
         for i in range(len(self)):
-            elems.append(str(self.__array[i]) if type(self.__array[i]) != str else "'{0}'".format(self.__array[i]))
+            elems.append(str(self.__array[i]) if type(self.__array[i]) != str else f"'{self.__array[i]}'")
         return '{' + ', '.join(elems) + '}'
