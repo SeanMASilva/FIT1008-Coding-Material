@@ -1,6 +1,6 @@
 from __future__ import annotations
 from data_structures.abstract_set import Set
-
+from data_structures.referential_array import ArrayR
 
 class BitVectorSet(Set[int]):
     """
@@ -20,6 +20,18 @@ class BitVectorSet(Set[int]):
     def is_empty(self) -> bool:
         """ True if the set is empty. """
         return self.__elems == 0
+    
+    def values(self) -> ArrayR[int]:
+        """
+        Returns the elements of the set as an array.
+        """
+        res = ArrayR(len(self))
+        count = 0
+        for item in range(1, int.bit_length(self.__elems) + 1):
+            if item in self:
+                res[count] = item
+                count += 1
+        return res
 
     def __contains__(self, item: int) -> bool:
         """
@@ -91,12 +103,6 @@ class BitVectorSet(Set[int]):
         res = BitVectorSet()
         res.__elems = self.__elems & ~other.__elems
         return res
-
-    def __and__(self, other: BitVectorSet):
-        return self.intersection(other)
-
-    def __or__(self, other: BitVectorSet):
-        return self.union(other)
 
     def __str__(self):
         """ Construct a nice string representation. """
