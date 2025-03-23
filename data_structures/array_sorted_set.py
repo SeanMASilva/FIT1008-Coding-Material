@@ -8,7 +8,7 @@ __docformat__ = 'reStructuredText'
 
 
 class ArraySortedSet(Set[T]):
-    """ Array-based implementation of the Abstract Sorted List. """
+    """ Array-based sorted list implementation of the Abstract Set. """
 
     def __init__(self, initial_capacity: int = 1) -> None:
         if initial_capacity <= 0:
@@ -24,8 +24,8 @@ class ArraySortedSet(Set[T]):
         self.__array = ArrayR(initial_capacity)
 
     def clear(self):
-        """ Clear the list.
-        All we need to do is reset the length of the list to 0.
+        """ Clear the set.
+        All we need to do is reset the size of the set to 0.
         This will start writing elements from the beginning of the array.
         """
         self.__length = 0
@@ -68,7 +68,7 @@ class ArraySortedSet(Set[T]):
             self.__array[i] = self.__array[i + 1]
 
     def __resize(self) -> None:
-        """ Resize the list.
+        """ Resize the set.
         It only sizes up, so should only be called when adding new items.
         """
         # Double the size of the array
@@ -82,7 +82,7 @@ class ArraySortedSet(Set[T]):
         self.__array = new_array
 
     def add(self, item: T) -> None:
-        """ Add new element to the list. """
+        """ Add new element to the set. """
         if len(self) == len(self.__array):
             self.__resize()
         index = self.__index_of_item(item)
@@ -133,6 +133,12 @@ class ArraySortedSet(Set[T]):
         return low
     
     def difference(self, other:Set[T]) -> ArraySortedSet[T]:
+        """
+        Return the difference of two sets, returns a set with every item not in the other set.
+        :complexity: O(n * contains)
+            n - size of self
+            contains - complexity of in of other set
+        """
         res = ArraySortedSet(len(self))
         for i in range(len(self)):
             item = self.__array[i]
@@ -143,6 +149,12 @@ class ArraySortedSet(Set[T]):
         return res
     
     def intersection(self, other:Set[T]) -> ArraySortedSet[T]:
+        """
+        Return the intersection of two sets, returns a set with every item in both self and other set.
+        :complexity: O(n * contains)
+            n - size of self
+            contains - complexity of in of other set
+        """
         res = ArraySortedSet(min(len(self), len(other)))
         for i in range(len(self)):
             item = self.__array[i]
@@ -153,6 +165,13 @@ class ArraySortedSet(Set[T]):
         return res
 
     def union(self, other:Set[T]) -> ArraySortedSet[T]:
+        """
+        Return the union of two sets, returns a set with every item in either self or other set.
+        :complexity: O((n + mlogm) * comp)
+            n - size of self
+            m - size of other
+            comp - cost of comparison
+        """
         res = ArraySortedSet(len(self) + len(other))
         other_values = other.values()
         sorted_values = mergesort(other_values)
