@@ -31,10 +31,10 @@ class ArrayR(Generic[T]):
         """
         Creates an array of references to objects of the given length
         :complexity: O(length) for best/worst case to initialise to None
-        :pre: length > 0
+        :pre: length >= 0
         """
-        if length <= 0:
-            raise ValueError("Array length should be larger than 0.")
+        if length < 0:
+            raise ValueError("Array length cannot be negative.")
         self.array = (length * py_object)()  # initialises the space
         self.array[:] = [None for _ in range(length)]
 
