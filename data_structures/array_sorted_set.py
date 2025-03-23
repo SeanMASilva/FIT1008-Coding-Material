@@ -3,7 +3,7 @@ from data_structures.referential_array import ArrayR
 from data_structures.abstract_set import Set, T
 from algorithms.mergesort import mergesort
 
-__author__ = 'Maria Garcia de la Banda and Brendon Taylor. Modified by Alexey Ignatiev'
+__author__ = 'Maria Garcia de la Banda and Brendon Taylor. Modified by Alexey Ignatiev and Sean Silva'
 __docformat__ = 'reStructuredText'
 
 
