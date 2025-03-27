@@ -74,7 +74,7 @@ class ArrayList(List[T]):
         :complexity: Worst case O(N), for list of length N.
         """
         if len(self) == len(self.__array):
-            new_cap = int(2 * len(self.__array))
+            new_cap = int(2 * len(self.__array)) + 1
             new_array = ArrayR(new_cap)
             for i in range(len(self)):
                 new_array[i] = self.__array[i]
