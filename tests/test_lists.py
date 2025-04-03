@@ -183,3 +183,15 @@ class TestLinkedList(TestCase):
         self.assertRaises(IndexError, lambda: self.list[2])
         self.assertRaises(IndexError, lambda: self.list[-3])
 
+    def test_iteration(self):
+        self.list.append(1)
+        self.list.append(2)
+        self.list.append(3)
+
+        items = [item for item in self.list]
+        self.assertEqual(items, [1, 2, 3])
+
+        iter2 = iter(self.list)
+        for _ in range(len(self.list)):
+            next(iter2)
+        self.assertRaises(StopIteration, next, iter2)

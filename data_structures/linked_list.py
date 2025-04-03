@@ -2,6 +2,23 @@ from data_structures.abstract_list import List, T
 from data_structures.node import Node
 
 
+class LinkedListIterator:
+    """ Iterator for LinkedList. """
+    def __init__(self, head_node: Node):
+        self.__current = head_node
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.__current is None:
+            raise StopIteration
+        else:
+            item = self.__current.item
+            self.__current = self.__current.link
+            return item
+
+
 class LinkedList(List[T]):
     """ Linked-node based implementation of List ADT. """
 
@@ -34,17 +51,7 @@ class LinkedList(List[T]):
 
     def __iter__(self):
         """ Iterate through the list. """
-        self.current = self.__head
-        return self
-
-    def __next__(self):
-        """ Get the next item in the iteration. """
-        if self.current is None:
-            raise StopIteration
-        else:
-            item = self.current.item
-            self.current = self.current.link
-            return item
+        return LinkedListIterator(self.__head)
 
     def __contains__(self, item: T) -> bool:
         """ Check if the item is in the list. """
