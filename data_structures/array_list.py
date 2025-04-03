@@ -6,8 +6,8 @@ class ArrayList(List[T]):
     """ Implementation of a generic list with arrays. """
 
     def __init__(self, initial_capacity: int = 1) -> None:
-        if initial_capacity <= 0:
-            raise ValueError("Capacity should be larger than 0.")
+        if initial_capacity < 0:
+            raise ValueError("Capacity cannot be negative.")
         
         List.__init__(self)
         self.__array = ArrayR(initial_capacity)

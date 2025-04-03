@@ -8,6 +8,15 @@ class TestArrayList(TestCase):
     def setUp(self):
         self.list = ArrayList()
     
+    def test_capacity(self):
+        # These should work
+        ArrayList(10)
+        ArrayList(0)
+        
+        # This should raise ValueError
+        with self.assertRaises(ValueError):
+            ArrayList(-1)
+
     def test_append(self):
         self.list.append(1)
         self.assertEqual(len(self.list), 1)

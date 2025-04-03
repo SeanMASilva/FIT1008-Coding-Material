@@ -10,7 +10,7 @@ class LinearProbeTable(HashTable[str, V]):
     """
     Linear Probe Table.
     Defines a Hash Table using Linear Probing for conflict resolution.
-    If you want to use this with a different key type, you should overwrite the hash function.
+    If you want to use this with a different key type, you should override the hash function.
     
     Type Arguments:
         - V:    Value Type.
