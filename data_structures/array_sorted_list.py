@@ -9,8 +9,8 @@ class ArraySortedList(SortedList[T]):
     """ Array-based implementation of the Abstract Sorted List. """
 
     def __init__(self, initial_capacity: int = 1) -> None:
-        if initial_capacity <= 0:
-            raise ValueError("Capacity should be larger than 0.")
+        if initial_capacity < 0:
+            raise ValueError("Capacity cannot be negative.")
 
         # Call the base class constructor
         SortedList.__init__(self)
