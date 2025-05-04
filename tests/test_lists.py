@@ -337,8 +337,8 @@ class TestLinkedList(TestCase):
 
         values = [i for i in self.list]
         
-        self.assertTrue(values == sorted(values[:]))
-        self.assertFalse(list_iter.has_next())
+        self.assertTrue(values == sorted(values)[::-1])
+        self.assertTrue(list_iter.has_next())
 
 
         

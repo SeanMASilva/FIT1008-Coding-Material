@@ -11,3 +11,6 @@ class Node(Generic[T]):
     def __init__(self, item: T = None):
         self.item = item
         self.link:Node[T] | None = None
+    
+    def __str__(self) -> str:
+        return f"Node({self.item}, {'...' if self.link else 'None'})"
