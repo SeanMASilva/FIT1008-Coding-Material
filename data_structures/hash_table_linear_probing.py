@@ -150,7 +150,7 @@ class LinearProbeTable(HashTable[str, V]):
 
         :complexity:
             Best: Same as linear probe, when no rehashing is needed.
-            Worst: Sum of __linear_probe and __rehash.
+            Worst: Same as __rehash.
         :raises FullError: when the table cannot be resized further.
         """
 
