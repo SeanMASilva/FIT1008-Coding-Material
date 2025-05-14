@@ -28,11 +28,13 @@ class LinkedListIterator:
             return self.__curr.item
         
     def insert_before(self, item:T):
+        """
+        Inserts a node before the current node.
+        :Invariant: The number of nodes after the current node remains the same
+                Inserting a node before the head of the list makes current the end of the list.
+        """
         new_node = self.__parent._insert_after_node(item, self.__prev)
-        if self.__curr is None:
-            pass
-        else:
-            self.__prev = new_node
+        self.__prev = new_node
 
     def insert_after(self, item:T):
         self.__parent._insert_after_node(item, self.__curr)
@@ -58,7 +60,9 @@ class LinkedListIterator:
     
     def __get_next_node(self) -> Node[T] | None:
         if self.__curr is None:
-            return self.__parent._LinkedList__head
+            if self.__prev is None:
+                return self.__parent._LinkedList__head
+            return None
         return self.__curr.link
 
 class LinkedList(List[T]):
