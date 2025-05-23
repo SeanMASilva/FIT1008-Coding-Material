@@ -12,6 +12,11 @@ You can run the tests by running:
 python -m unittest
 ```
 
+### Todo Items
+
+- Update the time complexities of hash tables to assume cost of comparing strings as constant
+- Add implementations for BST and Heap.
+
 ### Acknowledgements
 
 The original implementation of most of the data structures and algorithms were provided by:
