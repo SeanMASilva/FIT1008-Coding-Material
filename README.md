@@ -14,7 +14,6 @@ python -m unittest
 
 ### Todo Items
 
-- Update the time complexities of hash tables to assume cost of comparing strings as constant
 - Add implementations for BST and Heap.
 
 ### Acknowledgements

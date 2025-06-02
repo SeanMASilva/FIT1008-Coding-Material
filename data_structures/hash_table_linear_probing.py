@@ -65,9 +65,8 @@ class LinearProbeTable(HashTable[str, V]):
         Find the correct position for this key in the hash table using linear probing.
         :complexity: 
             Best: O(K) happens when we hash the key and the position is empty.
-            Worst: O(N * K) happens when we hash the key but the position is taken and we have to
-                search the entire table. For each position, we have to check if the key is equal to the one in the table,
-                hence the K factor.
+            Worst: O(N + K) happens when we hash the key but the position is taken and we have to
+                search the entire table.
             N is the number of items in the table.
             K is the length of the key.
         :raises KeyError: When the key is not in the table, but is_insert is False.
@@ -170,10 +169,9 @@ class LinearProbeTable(HashTable[str, V]):
 
         :complexity: 
             Best: O(K) when the key is at the beginning of the table and no cluster is present to rehash.
-            Worst: O(N^2 * K) when the key is at the beginning of a large cluster and we have to effectively
+            Worst: O(N * (N + K)) when the key is at the beginning of a large cluster and we have to effectively
                 rehash all elements. And each element has to linear probe over all (or a factor of) other elements currently
-                in the table. This analysis is assuming K is reprenting an average key length, and is being used
-                as the cost of comparing two keys as well as cost of hashing a key.
+                in the table. This is assuming K here is representing an average key length.
             N is the number of items in the table.
             K is the length of the key.
 
@@ -203,9 +201,8 @@ class LinearProbeTable(HashTable[str, V]):
         :complexity: 
             Best: O(N * K) happens when all items can be inserted immediately after being hashed
                 with no probing needed.
-            Worst: O(N^2 * K) happens when all items need maximum probing to be inserted in the new table.
-                This is assuming K here is representing an average key length, and is being used
-                as the cost of comparing two keys as well as cost of hashing a key.
+            Worst: O(N * (N + K)) happens when all items need maximum probing to be inserted in the new table.
+                This is assuming K here is representing an average key length.
             
             N is the number of items in the table.
             K is the length of the key.

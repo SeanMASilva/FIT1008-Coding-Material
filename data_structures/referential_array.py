@@ -59,12 +59,10 @@ class ArrayR(Generic[T]):
         self.array[index] = value
 
     @classmethod
-    def from_list(cls, lst: list) -> Union[ArrayR, None]:
+    def from_list(cls, lst: list) -> ArrayR:
         """ Creates an ArrayR from a list
         :complexity: O(n) where n is the length of the list
         """
-        if len(lst) == 0:
-            return None
         new_array = cls(len(lst))
         new_array.array[:] = lst
         return new_array

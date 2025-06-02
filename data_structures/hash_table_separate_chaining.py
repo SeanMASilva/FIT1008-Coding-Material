@@ -45,9 +45,8 @@ class HashTableSeparateChaining(HashTable[str, V]):
         :complexity:
             Best: O(K) where K is the length of the key (for hashing). Happens when the chain (linked list) does
                 not have many elements.
-            Worst: O(N * K) where N is the number of items in the hash table and K is the length of the key.
-                Happens when the position has many elements and we have to traverse the linked list, comparing
-                all the keys.
+            Worst: O(N + K) where N is the number of items in the hash table and K is the length of the key.
+                Happens when the position has many elements and we have to traverse the linked list.
         """
         position = self.hash(key)
         if self.__table[position] is None:
@@ -70,9 +69,8 @@ class HashTableSeparateChaining(HashTable[str, V]):
         Set a (key, data) pair in our hash table
         :complexity:
             Best: O(K) where K is the length of the key (for hashing). Happens when the position is empty.
-            Worst: O(N * K) where N is the number of items in the hash table and K is the length of the key.
-                Happens when the position is not empty and we have to traverse the linked list, comparing
-                all the keys.
+            Worst: O(N + K) where N is the number of items in the hash table and K is the length of the key.
+                Happens when the position is not empty and we have to traverse the linked list.
         """
         position = self.hash(key)
         if self.__table[position] is None:
@@ -108,8 +106,8 @@ class HashTableSeparateChaining(HashTable[str, V]):
         :complexity:
             Best: O(K) where K is the length of the key (for hashing). Happens when the chain at the position
                 doesn't have many items.
-            Worst: O(N * K) where N is the number of items in the hash table and K is the length of the key.
-                Happens when we have to traverse a long chain to find the key and compare all the keys.
+            Worst: O(N + K) where N is the number of items in the hash table and K is the length of the key.
+                Happens when we have to traverse a long chain to find the key.
         """
         position = self.hash(key)
         if self.__table[position] is None:
