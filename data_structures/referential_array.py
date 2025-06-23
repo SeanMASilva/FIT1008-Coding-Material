@@ -22,7 +22,6 @@ __docformat__ = 'reStructuredText'
 
 from ctypes import py_object
 from typing import Generic, Union, TypeVar
-from data_structures.abstract_list import List
 
 T = TypeVar('T')
 
@@ -60,13 +59,19 @@ class ArrayR(Generic[T]):
         self.array[index] = value
 
     @classmethod
-    def from_list(cls, lst: list[T] | List[T]) -> ArrayR[T]:
-        """ Creates an ArrayR from a python list, or ArrayList or LinkedList 
+    def from_list(cls, lst: list) -> ArrayR:
+        """ Creates an ArrayR from a list
         :complexity: O(n) where n is the length of the list
         """
         new_array = cls(len(lst))
         new_array.array[:] = lst
         return new_array
+
+    def to_list(self) -> list:
+        """ Returns a list representation of the array
+        :complexity: O(n) where n is the length of the array
+        """
+        return [self.array[i] for i in range(len(self))]
 
     def __str__(self) -> str:
         """ Returns a string representation of the array
