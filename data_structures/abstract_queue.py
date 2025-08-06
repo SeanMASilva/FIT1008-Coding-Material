@@ -34,6 +34,10 @@ class Queue(ABC, Generic[T]):
         pass
 
     @abstractmethod
-    def clear(self):
+    def clear(self) -> None:
         """ Clears all elements from the queue. """
         pass
+
+    @abstractmethod
+    def __str__(self) -> str:
+        """ Returns the string representation of the queue """
