@@ -10,9 +10,10 @@ class MaxArrayHeap(UnorderedArrayHeap[T]):
         return above < below
     
     def extract_max(self) -> T:
+        """ Alias for extract_root, specific for max heaps.
+        """
         return self.extract_root()
     
     @classmethod
     def heapify(cls, items: Iterable[T]) -> MaxArrayHeap[T]:
-        empty_heap = MaxArrayHeap(0)
-        return  UnorderedArrayHeap.heapify(items, empty_heap)
+        return MaxArrayHeap(0)._heapify(items)

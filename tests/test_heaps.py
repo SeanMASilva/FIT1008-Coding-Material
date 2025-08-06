@@ -2,6 +2,7 @@ from unittest import TestCase
 from data_structures.array_heap import ArrayHeap
 from data_structures.max_array_heap import MaxArrayHeap
 from data_structures.min_array_heap import MinArrayHeap
+from data_structures.unordered_array_heap import UnorderedArrayHeap
 
 def check_heap_ordering(heap_array, bound, ordering):
     for i in range(1, bound):
@@ -51,7 +52,7 @@ class TestArrayHeap(TestCase):
     
     def test_peek(self):
         heap = ArrayHeap(10, 'max')
-        self.assertRaises(IndexError, heap.peek)
+        self.assertRaises(ValueError, heap.peek)
 
         for i in range(10):
             heap.add(i)
@@ -99,7 +100,7 @@ class TestMinArrayHeap(TestCase):
         self.assertRaises(ValueError, self.heap.extract_min)
     
     def test_peek(self):
-        self.assertRaises(IndexError, self.heap.peek)
+        self.assertRaises(ValueError, self.heap.peek)
 
         for i in range(10):
             self.heap.add(i)
@@ -109,7 +110,7 @@ class TestMinArrayHeap(TestCase):
             self.assertEqual(self.heap.peek(), i)
             self.heap.extract_min()
         
-        self.assertRaises(IndexError, self.heap.peek)
+        self.assertRaises(ValueError, self.heap.peek)
     
     def test_heapify(self):
         heap = MinArrayHeap.heapify(range(10))
@@ -147,7 +148,7 @@ class TestMaxArrayHeap(TestCase):
         self.assertRaises(ValueError, self.heap.extract_max)
     
     def test_peek(self):
-        self.assertRaises(IndexError, self.heap.peek)
+        self.assertRaises(ValueError, self.heap.peek)
 
         for i in range(10):
             self.heap.add(i)
@@ -157,7 +158,7 @@ class TestMaxArrayHeap(TestCase):
             self.assertEqual(self.heap.peek(), 9-i)
             self.heap.extract_max()
         
-        self.assertRaises(IndexError, self.heap.peek)
+        self.assertRaises(ValueError, self.heap.peek)
     
     def test_heapify(self):
         heap = MaxArrayHeap.heapify(range(10))
@@ -167,3 +168,10 @@ class TestMaxArrayHeap(TestCase):
         elems = [heap.extract_root() for _ in range(10)]
 
         self.assertEqual(elems, [9,8,7,6,5,4,3,2,1,0])
+    
+
+class TestUnorderedHeap(TestCase):
+    def test_init(self):
+        """ Unordered heap is still abstract (missing ordering and heapify) """
+        self.assertRaises(TypeError, lambda: UnorderedArrayHeap(10))
+

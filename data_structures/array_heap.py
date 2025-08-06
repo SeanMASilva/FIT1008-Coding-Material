@@ -33,5 +33,4 @@ class ArrayHeap(UnorderedArrayHeap[T]):
         
     @classmethod
     def heapify(cls, items: Iterable[T], ordering:HeapOrders) -> ArrayHeap[T]:
-        empty_heap = ArrayHeap(0, ordering)
-        return  UnorderedArrayHeap.heapify(items, empty_heap)
+        return ArrayHeap(0, ordering)._heapify(items)
