@@ -76,3 +76,14 @@ class CircularQueue(Queue[T]):
     def __len__(self) -> int:
         """ Returns the number of elements in the queue. """
         return self.__length
+
+    def __str__(self) -> str:
+        """ Returns the string representation of the queue """
+        i = self.__front
+        result = '['
+        for _ in range(len(self)):
+            result += str(self.__array[i]) + ', '
+            i = (i + 1) % len(self.__array)
+        result = result[0:-2]
+        result += ']'
+        return result
