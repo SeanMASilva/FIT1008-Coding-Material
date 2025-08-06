@@ -12,10 +12,6 @@ You can run the tests by running:
 python -m unittest
 ```
 
-### Todo Items
-
-- Add implementations for BST and Heap.
-
 ### Acknowledgements
 
 The original implementation of most of the data structures and algorithms were provided by:
