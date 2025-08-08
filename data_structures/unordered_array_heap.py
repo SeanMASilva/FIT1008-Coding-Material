@@ -145,4 +145,9 @@ class UnorderedArrayHeap(AbstractHeap[T]):
         
         return heap
 
-
+    def __str__(self) -> str:
+        res = ArrayR(self.__length)
+        for i in range(self.__length):
+            res[i] = str(self.__array[i + 1])
+        
+        return '[' + ', '.join(res) + ']'

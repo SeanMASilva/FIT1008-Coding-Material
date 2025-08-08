@@ -12,6 +12,11 @@ You can run the tests by running:
 python -m unittest
 ```
 
+### Todo Items
+
+- Add tests for binary search tree
+- Add str method for linked heap
+
 ### Acknowledgements
 
 The original implementation of most of the data structures and algorithms were provided by:

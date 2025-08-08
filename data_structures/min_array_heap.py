@@ -16,4 +16,11 @@ class MinArrayHeap(UnorderedArrayHeap[T]):
     
     @classmethod
     def heapify(cls, items: Iterable[T]) -> MinArrayHeap[T]:
+        """ Construct a heap from an iterable of items. 
+        returns: A heap containing all of the items in the iterable.
+        complexity: O(n) where n is the number of items in the iterable.
+        """
         return  MinArrayHeap(0)._heapify(items)
+    
+    def __str__(self):
+        return 'MinArrayHeap(' + UnorderedArrayHeap.__str__(self) + ')'
