@@ -130,6 +130,7 @@ class UnorderedArrayHeap(AbstractHeap[T]):
                 return new_array
             
             array = ArrayR(2)
+            i = -1
             for i, item in enumerate(items):
                 if i + 1 >= len(array):
                     array = resize(array)

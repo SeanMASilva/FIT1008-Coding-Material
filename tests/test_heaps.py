@@ -66,6 +66,13 @@ class TestMaxArrayHeap(TestCase):
 
         heap = MaxArrayHeap.heapify(generator)
         self.assertTrue(check_heap_ordering(heap, lambda a, b: a >= b))
+        self.assertEqual(len(heap), 10)
+
+        empty_generator = (i for i in range(0))
+        heap = MaxArrayHeap.heapify(empty_generator)
+        self.assertTrue(check_heap_ordering(heap, lambda a, b: a >= b))
+        self.assertEqual(len(heap), 0)
+
     
     def test_str(self):
         heap = MaxArrayHeap(10)
