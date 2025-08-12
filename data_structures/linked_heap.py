@@ -84,7 +84,7 @@ class MinLinkedHeap(AbstractHeap[T]):
         complexity: O(n) where n is the number of items in the iterable.
 
         With the stack, only similar sized merges occur. 
-        This means 3/4 n merges of depth 1, n/8 merges of depth 2, n/16 mergs of depth 3 etc.
+        This means 3/4 n merges of depth 1, n/8 merges of depth 2, n/16 merges of depth 3 etc.
         This is the same series for array based heapify.
         """
         res = cls()
